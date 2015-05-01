@@ -22,13 +22,23 @@ public class Interfaz extends javax.swing.JFrame {
      */
     public Interfaz() {
         initComponents();
-        ImageIcon fot = new ImageIcon("C:\\Users\\USUARIO\\Documents\\NetBeansProjects\\MakeOrder\\Logos\\Iconos (8).png");
+        setBackground(new java.awt.Color(255, 255, 255));
+        getContentPane().setBackground( Color.WHITE );
+        ImageIcon fot = new ImageIcon("Logos\\logo (3).png");
         ImageIcon icono = new ImageIcon(fot.getImage().getScaledInstance(lblogo.getWidth(), lblogo.getHeight(), Image.SCALE_SMOOTH));
         lblogo.setIcon(icono);
-        ImageIcon iconoOriginal = new ImageIcon("C:\\Users\\USUARIO\\Documents\\NetBeansProjects\\MakeOrder\\Logos\\Iconos (6).png");
-        ImageIcon iconoEscala = new ImageIcon(iconoOriginal.getImage().getScaledInstance(163,115, Image.SCALE_SMOOTH));
-        btOrdenar.setIcon(iconoEscala);
+        ImageIcon iconoOriginal = new ImageIcon("Logos/Iconos (5).png");
+        ImageIcon iconoEscala = new ImageIcon(iconoOriginal.getImage().getScaledInstance(lbIcono.getWidth(),lbIcono.getHeight(), Image.SCALE_SMOOTH));
+        lbIcono.setIcon(iconoEscala);
+        lbIcono1.setIcon(iconoEscala);
         
+        ImageIcon goIcon = new ImageIcon("Logos/go.png");
+        ImageIcon goEscala = new ImageIcon(goIcon.getImage().getScaledInstance(btOrdenar.getWidth(),btOrdenar.getHeight(), Image.SCALE_SMOOTH));
+        btOrdenar.setIcon(goEscala);
+        
+        ImageIcon exitIcon = new ImageIcon("Logos/exit.png");
+        ImageIcon exitEscala = new ImageIcon(exitIcon.getImage().getScaledInstance(btExit.getWidth(),btExit.getHeight(), Image.SCALE_SMOOTH));
+        btExit.setIcon(exitEscala);
     }
 
     /**
@@ -42,18 +52,31 @@ public class Interfaz extends javax.swing.JFrame {
 
         lblogo = new javax.swing.JLabel();
         btOrdenar = new javax.swing.JButton();
+        lbIcono = new javax.swing.JLabel();
+        lbIcono1 = new javax.swing.JLabel();
+        btExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("MakeOrder");
+        setTitle("TidyUp");
         setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
 
-        lblogo.setIcon(new javax.swing.ImageIcon("C:\\Users\\USUARIO\\Documents\\NetBeansProjects\\MakeOrder\\Logos\\Iconos (8).PNG")); // NOI18N
-
-        btOrdenar.setIcon(new javax.swing.ImageIcon("C:\\Users\\USUARIO\\Documents\\NetBeansProjects\\MakeOrder\\Logos\\Iconos (6).png")); // NOI18N
+        btOrdenar.setBackground(new java.awt.Color(255, 255, 255));
+        btOrdenar.setForeground(new java.awt.Color(255, 255, 255));
+        btOrdenar.setToolTipText("DO!");
+        btOrdenar.setBorder(null);
+        btOrdenar.setContentAreaFilled(false);
+        btOrdenar.setFocusPainted(false);
+        btOrdenar.setFocusable(false);
         btOrdenar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btOrdenarActionPerformed(evt);
+            }
+        });
+
+        btExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btExitActionPerformed(evt);
             }
         });
 
@@ -62,31 +85,48 @@ public class Interfaz extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(btOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lbIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblogo, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbIcono1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblogo, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(139, 139, 139)
+                        .addComponent(btExit, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblogo, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblogo, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbIcono1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btExit, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOrdenarActionPerformed
-        // TODO add your handling code here:
+        InfoGui info = new InfoGui();
+        info.setVisible(true);
     }//GEN-LAST:event_btOrdenarActionPerformed
+
+    private void btExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btExitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -124,7 +164,10 @@ public class Interfaz extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btExit;
     private javax.swing.JButton btOrdenar;
+    private javax.swing.JLabel lbIcono;
+    private javax.swing.JLabel lbIcono1;
     private javax.swing.JLabel lblogo;
     // End of variables declaration//GEN-END:variables
 }
