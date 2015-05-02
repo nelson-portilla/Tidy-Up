@@ -8,18 +8,19 @@ package TidyUp;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Image;
+import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 /**
  *
- * @author USUARIO
+ * @author Nelson Portilla
  */
 public class Interfaz extends javax.swing.JFrame {
 
     /**
      * Creates new form Interfaz
-     */
+     */    
     public Interfaz() {
         initComponents();
         setBackground(new java.awt.Color(255, 255, 255));
@@ -120,7 +121,22 @@ public class Interfaz extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOrdenarActionPerformed
+        //CREO LA LISTA DE NOMBRES DE ARCHIVOS//  
+        MakeList escribir = new MakeList();
+                
+        GetNames leer = new GetNames();
+        //Obtengo el vector con las canciones//
+        Vector <String> lista = leer.leerArchivo("");
+        
+        TidyUp tidyUp = new TidyUp();
+        for(int i=0; i<lista.size()-1; i++){
+            System.out.println("LISTA: "+lista.get(i));
+            tidyUp.clasifyProcess(lista.get(i));
+        }
+        
         InfoGui info = new InfoGui();
+        info.setCount(lista.size()-1);
+        info.setText(tidyUp.getprueba());
         info.setVisible(true);
     }//GEN-LAST:event_btOrdenarActionPerformed
 

@@ -11,7 +11,7 @@ import java.io.InputStreamReader;
 
 /**
  *
- * @author USUARIO
+ * @author Nelson Portilla
  */
 public class MakeList {
 

@@ -11,24 +11,26 @@ import javax.swing.ImageIcon;
 
 /**
  *
- * @author USUARIO
+ * @author Nelson Portilla
  */
 public class InfoGui extends javax.swing.JFrame {
 
     /**
      * Creates new form InfoGui
      */
+    private int count = 0;
+    
     public InfoGui() {
         initComponents();
         setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().setBackground( Color.WHITE );
-        ImageIcon fot = new ImageIcon("Logos\\info (4).png");
+        ImageIcon fot = new ImageIcon("Logos\\info (2).png");
         ImageIcon icono = new ImageIcon(fot.getImage().getScaledInstance(lbIcono.getWidth(), lbIcono.getHeight(), Image.SCALE_SMOOTH));
         lbIcono.setIcon(icono);
         
         ImageIcon exitIcon = new ImageIcon("Logos/exit.png");
         ImageIcon exitEscala = new ImageIcon(exitIcon.getImage().getScaledInstance(btExit.getWidth(),btExit.getHeight(), Image.SCALE_SMOOTH));
-        btExit.setIcon(exitEscala);
+        btExit.setIcon(exitEscala);             
     }
 
     /**
@@ -43,7 +45,7 @@ public class InfoGui extends javax.swing.JFrame {
         lbIcono = new javax.swing.JLabel();
         btExit = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        MyAreaText = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Information");
@@ -56,11 +58,11 @@ public class InfoGui extends javax.swing.JFrame {
 
         jScrollPane1.setViewportBorder(new javax.swing.border.MatteBorder(null));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Maiandra GD", 0, 13)); // NOI18N
-        jTextArea1.setRows(5);
-        jTextArea1.setText("Information of the process");
-        jScrollPane1.setViewportView(jTextArea1);
+        MyAreaText.setColumns(20);
+        MyAreaText.setFont(new java.awt.Font("Maiandra GD", 0, 13)); // NOI18N
+        MyAreaText.setRows(5);
+        MyAreaText.setText("Information of the process");
+        jScrollPane1.setViewportView(MyAreaText);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -71,8 +73,8 @@ public class InfoGui extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lbIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 5, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btExit, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -83,11 +85,13 @@ public class InfoGui extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 193, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btExit, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -96,12 +100,20 @@ public class InfoGui extends javax.swing.JFrame {
     private void btExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExitActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btExitActionPerformed
-
-
+    
+    public void setCount(int num){
+        this.count=num;
+    }
+    
+    public void setText(String infoText){
+        String text = "NUMERO TOTAL DE CANCIONES:\n"+count;
+        MyAreaText.setText(text+infoText);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea MyAreaText;
     private javax.swing.JButton btExit;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lbIcono;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package TidyUp;
+import java.awt.List;
 import java.io.*;
 import java.io.File;
 import java.io.FileInputStream;
@@ -33,73 +34,96 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  *
- * @author USUARIO
+ * @author Nelson Portilla
  */
 public class TidyUp {
-
-    /**
-     * @param args the command line arguments
-     */
-    public void ProcesoCopiar(){
-        
+    
+    private int countSalsa,countVallenato,countReggaeton,countTechno;
+   
+    public TidyUp(){
+        countSalsa=countVallenato=countReggaeton=countTechno=0;
     }
-
-//    public static void main(String[] args) {
-//
-//        /**
-//        String audioFileLoc = "C:\\Users\\USUARIO\\Music\\JBalvin - Ay Vamos.mp3";
-//        
-//        try {
-//
-//            Path Origen = Paths.get(audioFileLoc);
-//            //Creamos directorio especificado
-//           
-//            String DestinoTemp = "C:\\Users\\USUARIO\\Downloads\\J Balvin - Ay Vamos.mp3";
-//            Path Destino = Paths.get(DestinoTemp);
-//                        //sobreescribir el fichero de destino, si existe, y copiar
-//            // los atributos, incluyendo los permisos rwx
-//            CopyOption[] options = new CopyOption[]{
-//                StandardCopyOption.REPLACE_EXISTING,
-//                StandardCopyOption.COPY_ATTRIBUTES
-//            };
-//            //Se copia desde origen a destino con las condiciones especificadas en options
-//            Files.copy(Origen, Destino, options);
-//
-//           
-//            InputStream input = new FileInputStream(new File(audioFileLoc));
-//            ContentHandler handler = (ContentHandler) new DefaultHandler();
-//            Metadata metadata = new Metadata();
-//            Parser parser = new Mp3Parser();
-//            ParseContext parseCtx = new ParseContext();
-//            parser.parse(input, (org.xml.sax.ContentHandler) handler, metadata, parseCtx);
-//            input.close();
-//
-//// List all metadata
-//            String[] metadataNames = metadata.names();
-//
-//            for (String name : metadataNames) {
-//                System.out.println(name + ": " + metadata.get(name));
-//            }
-//
-//// Retrieve the necessary info from metadata
-//// Names - title, xmpDM:artist etc. - mentioned below may differ based
-//// on the standard used for processing and storing standardized and/or
-//// proprietary information relating to the contents of a file.
-//            System.out.println("Title: " + metadata.get("title"));
-//            System.out.println("Artists: " + metadata.get("xmpDM:artist"));
-//            System.out.println("Genre: " + metadata.get("xmpDM:genre"));
-//
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } catch (SAXException e) {
-//            e.printStackTrace();
-//        } catch (TikaException e) {
-//            e.printStackTrace();
-//        }
-//    }**/
-//       
-//    
-//                }
+    
+    /**
+     * @brief Process of Copy of a mp3 File to the path specified
+     * @param mp3:String with the name of the mp3 file
+     * @param ruta: String with the folder path for the copy
+     * @throws IOException 
+     */
+    private void copyProcess(String mp3, String ruta) throws IOException{                        
+        try {
+            String audioFileLoc = "C:\\Users\\USUARIO\\Music\\"+mp3;
+            Path Origen = Paths.get(audioFileLoc);
+            //Creamos directorio para la copia           
+            String DestinoTemp = ruta+mp3;
+            Path Destino = Paths.get(DestinoTemp);
+            //sobreescribir el fichero de destino, si existe, y copiar
+            // los atributos, incluyendo los permisos rwx
+            CopyOption[] options = new CopyOption[]{
+                StandardCopyOption.REPLACE_EXISTING,
+                StandardCopyOption.COPY_ATTRIBUTES
+            };
+            //Se copia desde origen a destino con las condiciones especificadas en options
+            Files.copy(Origen, Destino, options);
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    /**
+     * @brief Procces of clasify for Genre Tag of the mp3 File
+     * @param mp3name: String with the name of the Mp3 file
+     */
+    public void clasifyProcess(String mp3name) {
+        String genero = "";
+        //Creamos la ruta del mp3
+        String audioFileLoc = "C:\\Users\\USUARIO\\Music\\"+mp3name;
+        try {
+            InputStream input = new FileInputStream(new File(audioFileLoc));
+            ContentHandler handler = (ContentHandler) new DefaultHandler();
+            Metadata metadata = new Metadata();
+            Parser parser = new Mp3Parser();
+            ParseContext parseCtx = new ParseContext();
+            parser.parse(input, (org.xml.sax.ContentHandler) handler, metadata, parseCtx);
+            input.close();
+            // List all metadata
+            String[] metadataNames = metadata.names();
+            System.out.println("Mp3: "+mp3name);
+            genero = metadata.get("xmpDM:genre");
+            System.out.println("Genre: " + genero);
+            switch(genero){
+                case "Salsa": copyProcess(mp3name, "C:\\Users\\USUARIO\\Downloads\\Salsa\\"); countSalsa++;break;
+                case "Reggaeton": copyProcess(mp3name, "C:\\Users\\USUARIO\\Downloads\\Reggaeton\\"); countVallenato++; break;
+                case "Techno": copyProcess(mp3name, "C:\\Users\\USUARIO\\Downloads\\Techno\\"); countReggaeton++; break;
+                case "Vallenato": copyProcess(mp3name, "C:\\Users\\USUARIO\\Downloads\\Vallenato\\"); countTechno++; break;
+                default: System.out.println("Null"); break;
+            }
+            
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
+            e.printStackTrace();
+        } catch (TikaException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public List getCounters(){
+        List CounterList = new List();
+        CounterList.add("Salsa: "+countSalsa);
+        CounterList.add("Vallenato: "+countVallenato);
+        CounterList.add("Reggaeton: "+countReggaeton);
+        CounterList.add("Techno: "+countReggaeton);
+        return CounterList;
+    }
+    
+    public String getprueba(){
+        String test =   "\nSalsa: "+countSalsa+
+                        "\nVallenato: "+countVallenato+
+                        "\nReggaeton: "+countReggaeton+
+                        "\nTechno: "+countReggaeton;
+        return test;
+    }
 }
