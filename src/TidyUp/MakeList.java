@@ -16,7 +16,7 @@ import java.io.InputStreamReader;
 public class MakeList {
 
     public MakeList() {
-        String[] cmd = {"cmd.exe", "/C", "cd", "C:/Users/USUARIO/Music", "&", "dir", "/b", ">", "nombres.txt"};
+        String[] cmd = {"cmd.exe", "/C", "cd", "C:/Users/USUARIO/Music", "&", "dir", "/b", ">", "zzzzzznombres.txt"};
 
         Process pr;
         try {

@@ -5,9 +5,16 @@
  */
 package TidyUp;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Insets;
 import javax.swing.ImageIcon;
+import javax.swing.JTextArea;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -21,16 +28,21 @@ public class InfoGui extends javax.swing.JFrame {
     private int count = 0;
     
     public InfoGui() {
+        Fondo background = new Fondo("/Icons/FondoInfo5.jpg"); 
         initComponents();
+        this.setSize(640, 347);      
+        this.add(background, BorderLayout.LINE_START);
         setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().setBackground( Color.WHITE );
         ImageIcon fot = new ImageIcon(getClass().getResource("/Icons/info (2).png"));
         ImageIcon icono = new ImageIcon(fot.getImage().getScaledInstance(lbIcono.getWidth(), lbIcono.getHeight(), Image.SCALE_SMOOTH));
         lbIcono.setIcon(icono);
-        
-        ImageIcon exitIcon = new ImageIcon(getClass().getResource("Icons/exit.png"));
+        ImageIcon exitIcon = new ImageIcon(getClass().getResource("/Icons/exit.png"));
         ImageIcon exitEscala = new ImageIcon(exitIcon.getImage().getScaledInstance(btExit.getWidth(),btExit.getHeight(), Image.SCALE_SMOOTH));
-        btExit.setIcon(exitEscala);             
+        btExit.setIcon(exitEscala);
+        ImageIcon appIcon = new ImageIcon(getClass().getResource("/Icons/info (3).png"));
+        this.setIconImage(appIcon.getImage().getScaledInstance(128,128, Image.SCALE_SMOOTH));
+        this.pack();
     }
 
     /**
@@ -49,6 +61,7 @@ public class InfoGui extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Information");
+        setResizable(false);
 
         btExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -58,10 +71,18 @@ public class InfoGui extends javax.swing.JFrame {
 
         jScrollPane1.setViewportBorder(new javax.swing.border.MatteBorder(null));
 
+        MyAreaText.setEditable(false);
+        MyAreaText.setBackground(new java.awt.Color(0, 0, 0));
         MyAreaText.setColumns(20);
         MyAreaText.setFont(new java.awt.Font("Maiandra GD", 0, 13)); // NOI18N
+        MyAreaText.setForeground(new java.awt.Color(255, 255, 255));
         MyAreaText.setRows(5);
         MyAreaText.setText("Information of the process");
+        MyAreaText.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        MyAreaText.setCaretColor(new java.awt.Color(255, 255, 255));
+        MyAreaText.setHighlighter(null);
+        MyAreaText.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        MyAreaText.setOpaque(false);
         jScrollPane1.setViewportView(MyAreaText);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -70,14 +91,14 @@ public class InfoGui extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btExit, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btExit, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 255, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -87,9 +108,9 @@ public class InfoGui extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lbIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 193, Short.MAX_VALUE))
+                        .addGap(0, 168, Short.MAX_VALUE))
                     .addComponent(jScrollPane1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(btExit, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -110,6 +131,39 @@ public class InfoGui extends javax.swing.JFrame {
         MyAreaText.setText(text+infoText);
     }
     
+    
+    
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Interfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Interfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Interfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Interfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new InfoGui().setVisible(true);
+            }
+        });
+    }    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea MyAreaText;
     private javax.swing.JButton btExit;

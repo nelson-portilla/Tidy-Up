@@ -38,10 +38,16 @@ import org.xml.sax.helpers.DefaultHandler;
  */
 public class TidyUp {
     
-    private int countSalsa,countVallenato,countReggaeton,countTechno;
+    //Counters for each Genre
+    private int countSalsa,countVallenato,countReggaeton,countTechno,
+                countDescargas, countReggae, countRomantico, countPopular,
+                countMerengue;
    
     public TidyUp(){
-        countSalsa=countVallenato=countReggaeton=countTechno=0;
+        //Inicialization
+        countSalsa=countVallenato=countReggaeton=countTechno=
+        countDescargas=countReggae=countRomantico=countPopular=
+        countMerengue=0;
     }
     
     /**
@@ -76,7 +82,7 @@ public class TidyUp {
      */
     public void clasifyProcess(String mp3name) {
         String genero = "";
-        //Creamos la ruta del mp3
+        //Creation of the source mp3 path
         String audioFileLoc = "C:\\Users\\USUARIO\\Music\\"+mp3name;
         try {
             InputStream input = new FileInputStream(new File(audioFileLoc));
@@ -91,11 +97,17 @@ public class TidyUp {
             System.out.println("Mp3: "+mp3name);
             genero = metadata.get("xmpDM:genre");
             System.out.println("Genre: " + genero);
+            //Acording to Genre, call to copyProcess with the mp3-path and the destiny path
             switch(genero){
-                case "Salsa": copyProcess(mp3name, "C:\\Users\\USUARIO\\Downloads\\Salsa\\"); countSalsa++;break;
-                case "Reggaeton": copyProcess(mp3name, "C:\\Users\\USUARIO\\Downloads\\Reggaeton\\"); countVallenato++; break;
-                case "Techno": copyProcess(mp3name, "C:\\Users\\USUARIO\\Downloads\\Techno\\"); countReggaeton++; break;
-                case "Vallenato": copyProcess(mp3name, "C:\\Users\\USUARIO\\Downloads\\Vallenato\\"); countTechno++; break;
+                case "Salsa": copyProcess(mp3name, "D:\\MUSICA\\SALSA\\"); countSalsa++;break;
+                case "Reggaeton": copyProcess(mp3name, "D:\\MUSICA\\REGGAETON\\"); countReggaeton++; break;
+                case "Techno": copyProcess(mp3name, "D:\\MUSICA\\[- Techno -]\\"); countTechno++; break;
+                case "Vallenatos": copyProcess(mp3name, "D:\\MUSICA\\VALLENATOS\\"); countVallenato++; break;
+                case "Descargas": copyProcess(mp3name, "D:\\MUSICA\\DESCARGAS\\"); countDescargas++;break;
+                case "Romantico": copyProcess(mp3name, "D:\\MUSICA\\ROMANTICO\\VARIOS\\"); countRomantico++; break;
+                case "Popular": copyProcess(mp3name, "D:\\MUSICA\\POPULAR\\"); countPopular++; break;
+                case "Reggae": copyProcess(mp3name, "D:\\MUSICA\\REGGAE\\"); countReggae++; break;
+                case "Merengue": copyProcess(mp3name, "D:\\MUSICA\\Merengue\\"); countMerengue++; break;
                 default: System.out.println("Null"); break;
             }
             
@@ -110,20 +122,21 @@ public class TidyUp {
         }
     }
     
-    public List getCounters(){
-        List CounterList = new List();
-        CounterList.add("Salsa: "+countSalsa);
-        CounterList.add("Vallenato: "+countVallenato);
-        CounterList.add("Reggaeton: "+countReggaeton);
-        CounterList.add("Techno: "+countReggaeton);
-        return CounterList;
-    }
-    
-    public String getprueba(){
+    /**
+     * @brief Method that return a message specified the counters
+     * @return A String with each genre and your respective counters 
+     */
+    public String getCounters(){
         String test =   "\nSalsa: "+countSalsa+
                         "\nVallenato: "+countVallenato+
                         "\nReggaeton: "+countReggaeton+
-                        "\nTechno: "+countReggaeton;
+                        "\nTechno: "+countTechno+
+                        "\nDecargas: "+countDescargas+
+                        "\nRomantico: "+countRomantico+
+                        "\nPopular: "+countPopular+
+                        "\nReggae: "+countReggae+
+                        "\nMerengue: "+countMerengue;
         return test;
     }
+    
 }

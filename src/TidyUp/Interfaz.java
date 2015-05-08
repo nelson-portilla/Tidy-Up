@@ -24,7 +24,7 @@ public class Interfaz extends javax.swing.JFrame {
      * Creates new form Interfaz
      */    
     public Interfaz() {
-        Fondo background = new Fondo();       
+        Fondo background = new Fondo("/Icons/fondo2.jpg");       
         initComponents();
         this.setSize(640, 347);        
         this.add(background, BorderLayout.LINE_END);              
@@ -36,27 +36,28 @@ public class Interfaz extends javax.swing.JFrame {
         ImageIcon iconoOriginal = new ImageIcon(getClass().getResource("/Icons/Iconos (5).png"));
         ImageIcon iconoEscala = new ImageIcon(iconoOriginal.getImage().getScaledInstance(lbIcono.getWidth(),lbIcono.getHeight(), Image.SCALE_SMOOTH));
         lbIcono.setIcon(iconoEscala);
-        this.setIconImage(iconoOriginal.getImage().getScaledInstance(lbIcono.getWidth(),lbIcono.getHeight(), Image.SCALE_SMOOTH));
         ImageIcon goIcon = new ImageIcon(getClass().getResource("/Icons/go.png"));
         ImageIcon goEscala = new ImageIcon(goIcon.getImage().getScaledInstance(btOrdenar.getWidth(),btOrdenar.getHeight(), Image.SCALE_SMOOTH));
         btOrdenar.setIcon(goEscala);        
         ImageIcon exitIcon = new ImageIcon(getClass().getResource("/Icons/exit.png"));
         ImageIcon exitEscala = new ImageIcon(exitIcon.getImage().getScaledInstance(btExit.getWidth(),btExit.getHeight(), Image.SCALE_SMOOTH));
-        btExit.setIcon(exitEscala);        
+        btExit.setIcon(exitEscala);  
+        ImageIcon appIcon = new ImageIcon(getClass().getResource("/Icons/Iconos (6).png"));
+        this.setIconImage(appIcon.getImage().getScaledInstance(128,128, Image.SCALE_SMOOTH));
         this.pack();  
     }
     
-    public void paintComponent(Graphics g){
-        System.out.println("paintComponent");
-        Dimension tamanio = getSize();        
-        ImageIcon imagenFondo = new ImageIcon(getClass().
-                getResource("/Icons/fondo2.jpg"));
-        g.drawImage(imagenFondo.getImage(), 0, 0, 
-                tamanio.width, tamanio.height, null);
-        //setOpaque(false);
-        
-        this.paintComponent(g);
-    }    
+//    public void paintComponent(Graphics g){
+//        System.out.println("paintComponent");
+//        Dimension tamanio = getSize();        
+//        ImageIcon imagenFondo = new ImageIcon(getClass().
+//                getResource("/Icons/fondo2.jpg"));
+//        g.drawImage(imagenFondo.getImage(), 0, 0, 
+//                tamanio.width, tamanio.height, null);
+//        //setOpaque(false);
+//        
+//        this.paintComponent(g);
+//    }    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -140,22 +141,22 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void btOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOrdenarActionPerformed
         //CREO LA LISTA DE NOMBRES DE ARCHIVOS//
-        //        MakeList escribir = new MakeList();
-        //
-        //        GetNames leer = new GetNames();
-        //        //Obtengo el vector con las canciones//
-        //        Vector <String> lista = leer.leerArchivo("");
-        //
-        //        TidyUp tidyUp = new TidyUp();
-        //        for(int i=0; i<lista.size()-1; i++){
-            //            System.out.println("LISTA: "+lista.get(i));
-            //            tidyUp.clasifyProcess(lista.get(i));
-            //        }
-        //
-        //        InfoGui info = new InfoGui();
-        //        info.setCount(lista.size()-1);
-        //        info.setText(tidyUp.getprueba());
-        //        info.setVisible(true);
+        MakeList escribir = new MakeList();
+        GetNames leer = new GetNames();
+        //Obtengo el vector con las canciones//
+        Vector<String> lista = leer.leerArchivo("");
+        TidyUp tidyUp = new TidyUp();
+        for (int i = 0; i < lista.size() - 1; i++) {
+            System.out.println("LISTA: " + lista.get(i));
+            tidyUp.clasifyProcess(lista.get(i));
+        }
+        InfoGui info = new InfoGui();
+        System.out.println("Info ok...");
+        info.setCount(lista.size() - 1);
+        System.out.println("setCount ok...");
+        info.setText(tidyUp.getCounters());
+        System.out.println("settext ok...");
+        info.setVisible(true);
     }//GEN-LAST:event_btOrdenarActionPerformed
 
     /**

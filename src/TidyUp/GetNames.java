@@ -24,7 +24,7 @@ public class GetNames {
     }
 
     public Vector <String> leerArchivo(String ruta) {
-        ruta="C:/Users/USUARIO/Music/nombres.txt";        
+        ruta="C:/Users/USUARIO/Music/zzzzzznombres.txt";        
         Vector <String> canciones = new Vector<>();
         File archivo = null;
         FileReader fr = null;

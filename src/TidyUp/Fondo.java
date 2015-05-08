@@ -13,21 +13,26 @@ import javax.swing.ImageIcon;
  * @author Nelson Portilla
  */
 public class Fondo extends javax.swing.JPanel {
-
+    
+    public String background="/Icons/fondo2.jpg";
+    
     /**
      * Creates new form Fondo
      */
-    public Fondo() {
+    public Fondo(String fondo) {
         initComponents();
         this.setSize(640, 347);
+        background=fondo;
     }
+    
+    
     
     @Override
     public void paintComponent(Graphics g){
         //System.out.println("paintComponent");
         Dimension tamanio = getSize();        
         ImageIcon imagenFondo = new ImageIcon(getClass().
-                getResource("/Icons/fondo2.jpg"));
+                getResource(background));
         g.drawImage(imagenFondo.getImage(), 0, 0, 
                 tamanio.width, tamanio.height, null);
         setOpaque(false);
