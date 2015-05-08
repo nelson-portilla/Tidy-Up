@@ -24,11 +24,11 @@ public class InfoGui extends javax.swing.JFrame {
         initComponents();
         setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().setBackground( Color.WHITE );
-        ImageIcon fot = new ImageIcon("Logos\\info (2).png");
+        ImageIcon fot = new ImageIcon(getClass().getResource("/Icons/info (2).png"));
         ImageIcon icono = new ImageIcon(fot.getImage().getScaledInstance(lbIcono.getWidth(), lbIcono.getHeight(), Image.SCALE_SMOOTH));
         lbIcono.setIcon(icono);
         
-        ImageIcon exitIcon = new ImageIcon("Logos/exit.png");
+        ImageIcon exitIcon = new ImageIcon(getClass().getResource("Icons/exit.png"));
         ImageIcon exitEscala = new ImageIcon(exitIcon.getImage().getScaledInstance(btExit.getWidth(),btExit.getHeight(), Image.SCALE_SMOOTH));
         btExit.setIcon(exitEscala);             
     }

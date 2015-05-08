@@ -4,9 +4,11 @@
  * and open the template in the editor.
  */
 package TidyUp;
-
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.util.Vector;
 import javax.swing.ImageIcon;
@@ -22,25 +24,39 @@ public class Interfaz extends javax.swing.JFrame {
      * Creates new form Interfaz
      */    
     public Interfaz() {
+        Fondo background = new Fondo();       
         initComponents();
+        this.setSize(640, 347);        
+        this.add(background, BorderLayout.LINE_END);              
         setBackground(new java.awt.Color(255, 255, 255));
-        getContentPane().setBackground( Color.WHITE );
-        ImageIcon fot = new ImageIcon("Logos\\logo (3).png");
+        getContentPane().setBackground( Color.WHITE );        
+        ImageIcon fot = new ImageIcon(getClass().getResource("/Icons/logo (3).png"));
         ImageIcon icono = new ImageIcon(fot.getImage().getScaledInstance(lblogo.getWidth(), lblogo.getHeight(), Image.SCALE_SMOOTH));
-        lblogo.setIcon(icono);
-        ImageIcon iconoOriginal = new ImageIcon("Logos/Iconos (5).png");
+        lblogo.setIcon(icono);        
+        ImageIcon iconoOriginal = new ImageIcon(getClass().getResource("/Icons/Iconos (5).png"));
         ImageIcon iconoEscala = new ImageIcon(iconoOriginal.getImage().getScaledInstance(lbIcono.getWidth(),lbIcono.getHeight(), Image.SCALE_SMOOTH));
         lbIcono.setIcon(iconoEscala);
-        lbIcono1.setIcon(iconoEscala);
-        
-        ImageIcon goIcon = new ImageIcon("Logos/go.png");
+        this.setIconImage(iconoOriginal.getImage().getScaledInstance(lbIcono.getWidth(),lbIcono.getHeight(), Image.SCALE_SMOOTH));
+        ImageIcon goIcon = new ImageIcon(getClass().getResource("/Icons/go.png"));
         ImageIcon goEscala = new ImageIcon(goIcon.getImage().getScaledInstance(btOrdenar.getWidth(),btOrdenar.getHeight(), Image.SCALE_SMOOTH));
-        btOrdenar.setIcon(goEscala);
-        
-        ImageIcon exitIcon = new ImageIcon("Logos/exit.png");
+        btOrdenar.setIcon(goEscala);        
+        ImageIcon exitIcon = new ImageIcon(getClass().getResource("/Icons/exit.png"));
         ImageIcon exitEscala = new ImageIcon(exitIcon.getImage().getScaledInstance(btExit.getWidth(),btExit.getHeight(), Image.SCALE_SMOOTH));
-        btExit.setIcon(exitEscala);
+        btExit.setIcon(exitEscala);        
+        this.pack();  
     }
+    
+    public void paintComponent(Graphics g){
+        System.out.println("paintComponent");
+        Dimension tamanio = getSize();        
+        ImageIcon imagenFondo = new ImageIcon(getClass().
+                getResource("/Icons/fondo2.jpg"));
+        g.drawImage(imagenFondo.getImage(), 0, 0, 
+                tamanio.width, tamanio.height, null);
+        //setOpaque(false);
+        
+        this.paintComponent(g);
+    }    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -51,16 +67,22 @@ public class Interfaz extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btExit = new javax.swing.JButton();
         lblogo = new javax.swing.JLabel();
         btOrdenar = new javax.swing.JButton();
         lbIcono = new javax.swing.JLabel();
-        lbIcono1 = new javax.swing.JLabel();
-        btExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TidyUp");
         setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(640, 347));
         setResizable(false);
+
+        btExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btExitActionPerformed(evt);
+            }
+        });
 
         btOrdenar.setBackground(new java.awt.Color(255, 255, 255));
         btOrdenar.setForeground(new java.awt.Color(255, 255, 255));
@@ -75,74 +97,66 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
-        btExit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btExitActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addContainerGap(183, Short.MAX_VALUE)
                         .addComponent(lblogo, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbIcono1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(161, 161, 161)
+                        .addComponent(lbIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(263, 263, 263)
                         .addComponent(btOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(139, 139, 139)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btExit, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblogo, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbIcono1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btExit, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(173, 173, 173)
+                        .addComponent(btExit, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblogo, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
+                        .addComponent(btOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOrdenarActionPerformed
-        //CREO LA LISTA DE NOMBRES DE ARCHIVOS//  
-        MakeList escribir = new MakeList();
-                
-        GetNames leer = new GetNames();
-        //Obtengo el vector con las canciones//
-        Vector <String> lista = leer.leerArchivo("");
-        
-        TidyUp tidyUp = new TidyUp();
-        for(int i=0; i<lista.size()-1; i++){
-            System.out.println("LISTA: "+lista.get(i));
-            tidyUp.clasifyProcess(lista.get(i));
-        }
-        
-        InfoGui info = new InfoGui();
-        info.setCount(lista.size()-1);
-        info.setText(tidyUp.getprueba());
-        info.setVisible(true);
-    }//GEN-LAST:event_btOrdenarActionPerformed
-
+           
     private void btExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExitActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btExitActionPerformed
+
+    private void btOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOrdenarActionPerformed
+        //CREO LA LISTA DE NOMBRES DE ARCHIVOS//
+        //        MakeList escribir = new MakeList();
+        //
+        //        GetNames leer = new GetNames();
+        //        //Obtengo el vector con las canciones//
+        //        Vector <String> lista = leer.leerArchivo("");
+        //
+        //        TidyUp tidyUp = new TidyUp();
+        //        for(int i=0; i<lista.size()-1; i++){
+            //            System.out.println("LISTA: "+lista.get(i));
+            //            tidyUp.clasifyProcess(lista.get(i));
+            //        }
+        //
+        //        InfoGui info = new InfoGui();
+        //        info.setCount(lista.size()-1);
+        //        info.setText(tidyUp.getprueba());
+        //        info.setVisible(true);
+    }//GEN-LAST:event_btOrdenarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,7 +197,6 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JButton btExit;
     private javax.swing.JButton btOrdenar;
     private javax.swing.JLabel lbIcono;
-    private javax.swing.JLabel lbIcono1;
     private javax.swing.JLabel lblogo;
     // End of variables declaration//GEN-END:variables
 }
