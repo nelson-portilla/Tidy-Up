@@ -61,6 +61,9 @@ public class InfoGui extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Information");
+        setAutoRequestFocus(false);
+        setFocusCycleRoot(false);
+        setFocusable(false);
         setResizable(false);
 
         btExit.addActionListener(new java.awt.event.ActionListener() {
@@ -80,9 +83,12 @@ public class InfoGui extends javax.swing.JFrame {
         MyAreaText.setText("Information of the process");
         MyAreaText.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         MyAreaText.setCaretColor(new java.awt.Color(255, 255, 255));
+        MyAreaText.setFocusable(false);
         MyAreaText.setHighlighter(null);
         MyAreaText.setMargin(new java.awt.Insets(0, 0, 0, 0));
         MyAreaText.setOpaque(false);
+        MyAreaText.setRequestFocusEnabled(false);
+        MyAreaText.setVerifyInputWhenFocusTarget(false);
         jScrollPane1.setViewportView(MyAreaText);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
